@@ -4,11 +4,13 @@
   "description": "create a simple api by restify",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon server",
     "start": "node server"
   },
   "author": "richard Tian",
   "license": "ISC",
   "dependencies": {
+    "nodemon": "^1.17.2",
     "restify": "^7.0.0",
     "restify-errors": "^6.0.0"
   }
