@@ -3,12 +3,10 @@
 const errors = require("restify-errors");
 
 exports.set = (req, res, next) => {
-    console.log("input", req.body.payload)
   if (!req.body.hasOwnProperty("payload")) {
-    next(res.send(new errors.BadRequestError("No PayLoad record!")));
+    return(res.send(new errors.BadRequestError("No PayLoad record!")));
   }
   req.body.payload.map((p) =>{
-    console.log("children of payload", p.hasOwnProperty("shortId"))
     if (p.hasOwnProperty("address")===false) {
         next (res.send(new errors.BadRequestError("No address information in payload!")));
     }
@@ -43,7 +41,7 @@ exports.set = (req, res, next) => {
         next (res.send(new errors.BadRequestError("No reference information in payload!")));
     }
     if (p.hasOwnProperty("shortId")===false) {
-        next (res.send(new errors.BadRequestError("No shortId information in payload!")));
+        next(res.send(new errors.BadRequestError("No shortId information in payload!")));
     }
     if (p.hasOwnProperty("status")===false) {
         next (res.send(new errors.BadRequestError("No status information in payload!")));

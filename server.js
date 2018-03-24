@@ -6,17 +6,26 @@ const port = process.env.PORT || 8080;  //set port to 8080
 
 // const schema = require('./validation-schema');
 const server = restify.createServer(); //create a server
-server.use(restify.plugins.bodyParser())
-server.use((req,res,next)=>{
-    try {
-        var str1 = JSON.stringify(req.body);
-        JSON.parse(str1);
+server.use(restify.plugins.bodyParser());
+server.use((err,req,res,next)=> {
+    if(err) {
+        console.log('error', err)
+        return (res.send(new errors.BadRequestError("Could not decode request: JSON parsing failed!")));
+    }else {
         next();
     }
-    catch(e) {
-        next(new errors.BadRequestError("Could not decode request: JSON parsing failed!"));
-    }
 })
+// server.use((req,res,next)=>{
+//     console.log("comming?")
+//     try {
+//         var str1 = JSON.stringify(req.body);
+//         JSON.parse(str1);
+//         next();
+//     }
+//     catch(e) {
+//         return (new errors.BadRequestError("Could not decode request: JSON parsing failed!"));
+//     }
+// })
 server.post('/', validation.set, implementation.set);
 
 server.listen(port, ()=>{
