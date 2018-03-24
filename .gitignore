@@ -1,0 +1,27 @@
+# Don't check auto-generated stuff into git
+coverage
+build
+node_modules
+stats.json
+package-lock.json
+
+# Cruft
+.DS_Store
+npm-debug.log
+.idea
+.env
+yarn.lock
+eslintrc.json
+yarn.lock
+.eslintrc.js
+utm_urls.js
+dll/
+yarn-error.log
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history

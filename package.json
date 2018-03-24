@@ -1,0 +1,15 @@
+{
+  "name": "testapi",
+  "version": "1.0.0",
+  "description": "create a simple api by restify",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server"
+  },
+  "author": "richard Tian",
+  "license": "ISC",
+  "dependencies": {
+    "restify": "^7.0.0",
+    "restify-errors": "^6.0.0"
+  }
+}
