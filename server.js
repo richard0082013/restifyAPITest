@@ -1,13 +1,12 @@
 const restify = require('restify');
 const errors = require('restify-errors');
-const validation = require('./validation');
-const implementation = require('./implementation');
+const validation = require('./validation'); // validation handler
+const implementation = require('./implementation'); // data implementation handler
 const port = process.env.PORT || 8080;  //set port to 8080
 
-// const schema = require('./validation-schema');
 const server = restify.createServer(); //create a server
-server.use(restify.plugins.bodyParser());
-server.use((err,req,res,next)=> {
+server.use(restify.plugins.bodyParser()); // apply body parser middleware
+server.use((err,req,res,next)=> {  // customize the error message if the body parser return an invalid  json
     if(err) {
         console.log('error', err)
         return (res.send(new errors.BadRequestError("Could not decode request: JSON parsing failed!")));
@@ -15,17 +14,6 @@ server.use((err,req,res,next)=> {
         next();
     }
 })
-// server.use((req,res,next)=>{
-//     console.log("comming?")
-//     try {
-//         var str1 = JSON.stringify(req.body);
-//         JSON.parse(str1);
-//         next();
-//     }
-//     catch(e) {
-//         return (new errors.BadRequestError("Could not decode request: JSON parsing failed!"));
-//     }
-// })
 server.post('/', validation.set, implementation.set);
 
 server.listen(port, ()=>{
