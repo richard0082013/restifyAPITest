@@ -4,7 +4,7 @@ build
 node_modules
 stats.json
 package-lock.json
-
+curl-output.json
 # Cruft
 .DS_Store
 npm-debug.log
